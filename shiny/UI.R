@@ -39,7 +39,7 @@ ui = function() {
                               width = "100%",
                               min = MIN_YEAR, max = MAX_YEAR,
                               value = c(max(MIN_YEAR, MAX_YEAR - 20 + 1), MAX_YEAR),
-                              format = "####",
+                              sep = "",
                               step  = 1)
                 )
               ),
