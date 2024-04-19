@@ -18,14 +18,6 @@ RUN install2.r --error --skipinstalled \
     DT \
     colorspace \
     RColorBrewer \
-    scales \
-    maps \
-    mapdata \
-    mapplots \
-    ggplot2 \
-    ggthemes \
-    ggnewscale \
-    sf \
     devtools
 
 # Sets the working directory to the shiny-server root folder

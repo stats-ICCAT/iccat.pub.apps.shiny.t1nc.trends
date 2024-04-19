@@ -1,4 +1,5 @@
-library(iccat.pub.plots)
+library(iccat.pub.base)
+library(iccat.pub.viz)
 
 library(shiny)
 library(shinyjs)
