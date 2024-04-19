@@ -13,8 +13,6 @@ server = function(input, output, session) {
 
     if(!is.null(input$species) & length(input$species) > 0) {
       NC = NC[Species %in% input$species]
-    } else {
-      stop("Please select at least one species")
     }
 
     if(!is.null(input$flags)) {
@@ -33,6 +31,19 @@ server = function(input, output, session) {
 
     if(nrow(NC) == 0)
       stop("Unable to identify any catch data with the provided filtering criteria")
+
+    summary =
+      t1nc.summarise(
+        NC,
+        year_min = input$years[1],
+        year_max = input$years[2],
+        by_species = "Species" %in% input$show,
+        by_gear    = "Gears"   %in% input$show,
+        by_stock   = "Stocks"  %in% input$show
+      )$grouped
+
+    if(nrow(summary) > 100 & ( is.null(input$species) | length(input$species) == 0) )
+      stop(paste0("Too many strata (", nrow(summary), "): please narrow down your selection criteria"))
 
     return(NC)
   })

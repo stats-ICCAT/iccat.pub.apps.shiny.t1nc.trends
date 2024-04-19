@@ -3,6 +3,18 @@
   overflow-y: scroll;
 }
 
+/* To ensure virtual select input dropdown stay in front */
+.vscomp-dropbox-container  {
+  z-index:99999 !important;
+
+}
+
+/* To fix the width of the first column in the trends' table (flag name) */
+table thead tr th:nth-child(1) {
+  width: 150px !important;
+  min-width: 150px !important;
+}
+
 #glasspane {
 	position: fixed;
 
@@ -36,8 +48,3 @@
 	-moz-box-shadow:    -1px 10px 25px -11px rgba(0,0,0,0.75);
 	box-shadow:         -1px 10px 25px -11px rgba(0,0,0,0.75);
  }
-
-.vscomp-dropbox-container  {
-  z-index:99999 !important;
-
-}
