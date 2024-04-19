@@ -19,4 +19,7 @@ set_log_level(LOG_INFO)
 
 load("./NC_all.RData")
 
+MIN_YEAR = min(NC_ALL$YearC)
+MAX_YEAR = max(NC_ALL$YearC)
+
 INFO(paste0(nrow(NC_ALL), " rows loaded from NC_ALL"))

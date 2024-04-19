@@ -35,6 +35,17 @@ ui = function() {
               fluidRow(
                 column(
                   width = 12,
+                  sliderInput("years", "Year range",
+                              width = "100%",
+                              min = MIN_YEAR, max = MAX_YEAR,
+                              value = c(max(MIN_YEAR, MAX_YEAR - 20 + 1), MAX_YEAR),
+                              format = "####",
+                              step  = 1)
+                )
+              ),
+              fluidRow(
+                column(
+                  width = 12,
                   virtualSelectInput("species", "Species",
                                      width = "100%",
                                      multiple = TRUE,
@@ -75,16 +86,6 @@ ui = function() {
                                      search = TRUE,
                                      showValueAsTags = TRUE,
                                      multiple = TRUE)
-                )
-              ),
-              fluidRow(
-                column(
-                  width = 12,
-                  numericInput("num_years", "No. years",
-                               width = "100%",
-                               min = 10,
-                               value = 20,
-                               step = 1)
                 )
               ),
               fluidRow(

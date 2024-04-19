@@ -5,7 +5,7 @@ server = function(input, output, session) {
     NC = NC_ALL
 
     INFO(paste0("Species: ",   paste0(input$species,    collapse = ",")))
-    INFO(paste0("No. years: ", paste0(input$num_years,  collapse = ",")))
+    INFO(paste0("Year range:", paste0(input$years,      collapse = "-")))
     INFO(paste0("Show: ",      paste0(input$show,       collapse = ",")))
     INFO(paste0("Flags: ",     paste0(input$flags,      collapse = ",")))
     INFO(paste0("Gears: ",     paste0(input$gearGroups, collapse = ",")))
@@ -29,10 +29,7 @@ server = function(input, output, session) {
       NC = NC[Stock %in% input$stocks]
     }
 
-    last_year  = max(NC$Year)
-    first_year = last_year - input$num_years + 1
-
-    NC = NC[YearC >= first_year]
+    NC = NC[as.integer(as.character(YearC)) %in% input$years[1]:input$years[2]]
 
     if(nrow(NC) == 0)
       stop("Unable to identify any catch data with the provided filtering criteria")
@@ -46,10 +43,12 @@ server = function(input, output, session) {
         htmltools_value(
           t1nc.viz.trends(
             filtered_trend_data(),
-            sensitivity = input$sensitivity,
+            year_min = input$years[1],
+            year_max = input$years[2],
             by_species = "Species" %in% input$show,
             by_gear    = "Gears"   %in% input$show,
             by_stock   = "Stocks"  %in% input$show,
+            sensitivity = input$sensitivity,
             colorize_gears = COLORIZE_GEARS
           ),
           ft.align = "left"
@@ -63,7 +62,7 @@ server = function(input, output, session) {
                    paste0(input$gearGroups, collapse = "+"),
                    paste0(input$stocks,     collapse = "+"),
                    paste0(input$show,       collapse = "+"),
-                   input$num_years)
+                   paste0(input$years,      collapse = "-"))
 
     components = components[which(components != "")]
 
@@ -81,6 +80,8 @@ server = function(input, output, session) {
       write.table(
         t1nc.summarise(
           filtered_trend_data(),
+          year_min = input$years[1],
+          year_max = input$years[2],
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show
@@ -101,10 +102,12 @@ server = function(input, output, session) {
       exportxlsx(
         t1nc.viz.trends(
           filtered_trend_data(),
-          sensitivity = input$sensitivity,
+          year_min = input$years[1],
+          year_max = input$years[2],
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
+          sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
         path = file
@@ -120,10 +123,12 @@ server = function(input, output, session) {
       flextable::save_as_html(
         t1nc.viz.trends(
           filtered_trend_data(),
-          sensitivity = input$sensitivity,
+          year_min = input$years[1],
+          year_max = input$years[2],
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
+          sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
         path = file
@@ -139,10 +144,12 @@ server = function(input, output, session) {
       flextable::save_as_image(
         t1nc.viz.trends(
           filtered_trend_data(),
-          sensitivity = input$sensitivity,
+          year_min = input$years[1],
+          year_max = input$years[2],
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
+          sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
         path = file
