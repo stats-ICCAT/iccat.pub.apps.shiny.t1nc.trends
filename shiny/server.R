@@ -1,4 +1,5 @@
 server = function(input, output, session) {
+  COLORIZE_GEARS = FALSE
 
   filtered_trend_data = reactive({
     NC = NC_ALL
@@ -49,7 +50,7 @@ server = function(input, output, session) {
             by_species = "Species" %in% input$show,
             by_gear    = "Gears"   %in% input$show,
             by_stock   = "Stocks"  %in% input$show,
-            colorize_gears = FALSE
+            colorize_gears = COLORIZE_GEARS
           ),
           ft.align = "left"
         )
@@ -104,7 +105,7 @@ server = function(input, output, session) {
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
-          colorize_gears = TRUE
+          colorize_gears = COLORIZE_GEARS
         ),
         path = file
       )
@@ -123,7 +124,7 @@ server = function(input, output, session) {
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
-          colorize_gears = TRUE
+          colorize_gears = COLORIZE_GEARS
         ),
         path = file
       )
@@ -142,7 +143,7 @@ server = function(input, output, session) {
           by_species = "Species" %in% input$show,
           by_gear    = "Gears"   %in% input$show,
           by_stock   = "Stocks"  %in% input$show,
-          colorize_gears = TRUE
+          colorize_gears = COLORIZE_GEARS
         ),
         path = file
       )

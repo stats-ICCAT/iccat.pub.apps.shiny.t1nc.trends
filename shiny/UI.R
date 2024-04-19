@@ -21,7 +21,6 @@ ui = function() {
               h2(
                 img(src = "iccat-logo.jpg", height = "96px"),
                 span(TITLE),
-                strong("Download: "),
                 #downloadButton("downloadXLSX", "XLSX"),
                 downloadButton("downloadCSV",  "CSV"),
                 downloadButton("downloadHTML", "HTML"),
