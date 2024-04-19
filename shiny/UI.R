@@ -21,10 +21,11 @@ ui = function() {
               h2(
                 img(src = "iccat-logo.jpg", height = "96px"),
                 span(TITLE),
-                #downloadButton("downloadXLSX", "XLSX"),
-                downloadButton("downloadCSV",  "CSV"),
-                downloadButton("downloadHTML", "HTML"),
-                downloadButton("downloadPNG",  "PNG")
+                #downloadButton("downloadCSV",  "CSV"),
+                #downloadButton("downloadXLSX", "XLSX"), # Does not seem to work consistently
+                #downloadButton("downloadHTML", "HTML"), # Does not seem to work consistently
+                #downloadButton("downloadPNG",  "PNG")   # Does not seem to work consistently
+                downloadButton("downloadCSV",  "Download")
               )
             )
           ),
