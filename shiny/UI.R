@@ -52,7 +52,8 @@ ui = function() {
                                      choices = ALL_SPECIES,
                                      search = TRUE,
                                      showValueAsTags = TRUE,
-                                     selected = "BFT")
+                                     selected = "BFT",
+                                     updateOn = "close")
                 )
               ),
               fluidRow(
@@ -63,7 +64,8 @@ ui = function() {
                                      choices = ALL_FLAGS,
                                      search = TRUE,
                                      showValueAsTags = TRUE,
-                                     multiple = TRUE)
+                                     multiple = TRUE,
+                                     updateOn = "close")
                 )
               ),
               fluidRow(
@@ -74,7 +76,8 @@ ui = function() {
                                      choices = ALL_GEAR_GROUPS,
                                      search = TRUE,
                                      showValueAsTags = TRUE,
-                                     multiple = TRUE)
+                                     multiple = TRUE,
+                                     updateOn = "close")
                 )
               ),
               fluidRow(
@@ -85,7 +88,8 @@ ui = function() {
                                      choices = ALL_STOCK_AREAS,
                                      search = TRUE,
                                      showValueAsTags = TRUE,
-                                     multiple = TRUE)
+                                     multiple = TRUE,
+                                     updateOn = "close")
                 )
               ),
               fluidRow(
