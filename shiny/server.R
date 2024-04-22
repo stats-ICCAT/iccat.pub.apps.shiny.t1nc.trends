@@ -10,6 +10,7 @@ server = function(input, output, session) {
     INFO(paste0("Flags: ",     paste0(input$flags,      collapse = ",")))
     INFO(paste0("Gears: ",     paste0(input$gearGroups, collapse = ",")))
     INFO(paste0("Stocks: ",    paste0(input$stocks,     collapse = ",")))
+    INFO(paste0("Types: ",     paste0(input$catchTypes, collapse = ",")))
 
     if(!is.null(input$species) & length(input$species) > 0) {
       NC = NC[Species %in% input$species]
@@ -27,6 +28,10 @@ server = function(input, output, session) {
       NC = NC[Stock %in% input$stocks]
     }
 
+    if(!is.null(input$catchTypes)) {
+      NC = NC[CatchTypeCode %in% input$catchTypes]
+    }
+
     NC = NC[as.integer(as.character(YearC)) %in% input$years[1]:input$years[2]]
 
     if(nrow(NC) == 0)
@@ -37,9 +42,10 @@ server = function(input, output, session) {
         NC,
         year_min = input$years[1],
         year_max = input$years[2],
-        by_species = "Species" %in% input$show,
-        by_gear    = "Gears"   %in% input$show,
-        by_stock   = "Stocks"  %in% input$show
+        by_species    = "Species" %in% input$show,
+        by_gear       = "Gears"   %in% input$show,
+        by_stock      = "Stocks"  %in% input$show,
+        by_catch_type = "Type"    %in% input$show
       )$grouped
 
     if(nrow(summary) > 100 & ( is.null(input$species) | length(input$species) == 0) )
@@ -56,9 +62,10 @@ server = function(input, output, session) {
             filtered_trend_data(),
             year_min = input$years[1],
             year_max = input$years[2],
-            by_species = "Species" %in% input$show,
-            by_gear    = "Gears"   %in% input$show,
-            by_stock   = "Stocks"  %in% input$show,
+            by_species    = "Species" %in% input$show,
+            by_gear       = "Gears"   %in% input$show,
+            by_stock      = "Stocks"  %in% input$show,
+            by_catch_type = "Type"    %in% input$show,
             sensitivity = input$sensitivity,
             colorize_gears = COLORIZE_GEARS
           ) %>%
@@ -94,9 +101,10 @@ server = function(input, output, session) {
           filtered_trend_data(),
           year_min = input$years[1],
           year_max = input$years[2],
-          by_species = "Species" %in% input$show,
-          by_gear    = "Gears"   %in% input$show,
-          by_stock   = "Stocks"  %in% input$show
+          by_species    = "Species" %in% input$show,
+          by_gear       = "Gears"   %in% input$show,
+          by_stock      = "Stocks"  %in% input$show,
+          by_catch_type = "Type"    %in% input$show
         )$grouped,
         file = file,
         sep = ",",
@@ -116,9 +124,10 @@ server = function(input, output, session) {
           filtered_trend_data(),
           year_min = input$years[1],
           year_max = input$years[2],
-          by_species = "Species" %in% input$show,
-          by_gear    = "Gears"   %in% input$show,
-          by_stock   = "Stocks"  %in% input$show,
+          by_species    = "Species" %in% input$show,
+          by_gear       = "Gears"   %in% input$show,
+          by_stock      = "Stocks"  %in% input$show,
+          by_catch_type = "Type"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
@@ -137,9 +146,10 @@ server = function(input, output, session) {
           filtered_trend_data(),
           year_min = input$years[1],
           year_max = input$years[2],
-          by_species = "Species" %in% input$show,
-          by_gear    = "Gears"   %in% input$show,
-          by_stock   = "Stocks"  %in% input$show,
+          by_species    = "Species" %in% input$show,
+          by_gear       = "Gears"   %in% input$show,
+          by_stock      = "Stocks"  %in% input$show,
+          by_catch_type = "Type"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
@@ -158,9 +168,10 @@ server = function(input, output, session) {
           filtered_trend_data(),
           year_min = input$years[1],
           year_max = input$years[2],
-          by_species = "Species" %in% input$show,
-          by_gear    = "Gears"   %in% input$show,
-          by_stock   = "Stocks"  %in% input$show,
+          by_species    = "Species" %in% input$show,
+          by_gear       = "Gears"   %in% input$show,
+          by_stock      = "Stocks"  %in% input$show,
+          by_catch_type = "Type"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),

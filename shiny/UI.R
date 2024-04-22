@@ -50,10 +50,10 @@ ui = function() {
                                      width = "100%",
                                      multiple = TRUE,
                                      choices = ALL_SPECIES,
+                                     autoSelectFirstOption = TRUE,
                                      search = TRUE,
                                      showValueAsTags = TRUE,
-                                     selected = "BFT",
-                                     updateOn = "close")
+                                     updateOn = "change")
                 )
               ),
               fluidRow(
@@ -65,7 +65,7 @@ ui = function() {
                                      search = TRUE,
                                      showValueAsTags = TRUE,
                                      multiple = TRUE,
-                                     updateOn = "close")
+                                     updateOn = "change")
                 )
               ),
               fluidRow(
@@ -77,7 +77,7 @@ ui = function() {
                                      search = TRUE,
                                      showValueAsTags = TRUE,
                                      multiple = TRUE,
-                                     updateOn = "close")
+                                     updateOn = "change")
                 )
               ),
               fluidRow(
@@ -89,7 +89,19 @@ ui = function() {
                                      search = TRUE,
                                      showValueAsTags = TRUE,
                                      multiple = TRUE,
-                                     updateOn = "close")
+                                     updateOn = "change")
+                )
+              ),
+              fluidRow(
+                column(
+                  width = 12,
+                  virtualSelectInput("catchTypes", "Catch types",
+                                     width = "100%",
+                                     multiple = TRUE,
+                                     choices = ALL_CATCH_TYPES,
+                                     search = TRUE,
+                                     showValueAsTags = TRUE,
+                                     updateOn = "change")
                 )
               ),
               fluidRow(
@@ -97,9 +109,10 @@ ui = function() {
                   width = 12,
                   checkboxGroupButtons("show", "Show",
                                        width = "100%",
-                                       choices = c("Species", "Gears", "Stocks"),
-                                       selected = c("Species", "Gears", "Stocks"),
-                                       status = "primary")
+                                       choices =  c("Species", "Gears", "Stocks", "Type"),
+                                       selected = c("Species", "Gears", "Stocks", "Type"),
+                                       status = "primary",
+                                       justified = TRUE)
 
                 )
               ),

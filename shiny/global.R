@@ -8,6 +8,7 @@ library(shinycssloaders)
 library(DT)
 #library(YesSiR)
 
+ALL_CATCH_TYPES = setNames(as.character(REF_CATCH_TYPES$CODE), paste(REF_CATCH_TYPES$CODE, "-", REF_CATCH_TYPES$NAME_EN))
 ALL_SPECIES     = setNames(as.character(REF_SPECIES$CODE),     paste(REF_SPECIES$CODE,     "-", REF_SPECIES$NAME_EN))
 ALL_STOCK_AREAS = setNames(as.character(REF_STOCK_AREAS$CODE), paste(REF_STOCK_AREAS$CODE, "-", REF_STOCK_AREAS$NAME_EN))
 ALL_GEAR_GROUPS = setNames(as.character(REF_GEAR_GROUPS$CODE), paste(REF_GEAR_GROUPS$CODE, "-", REF_GEAR_GROUPS$NAME_EN))
