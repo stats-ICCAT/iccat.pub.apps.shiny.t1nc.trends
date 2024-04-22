@@ -110,7 +110,7 @@ ui = function() {
                   checkboxGroupButtons("show", "Show",
                                        width = "100%",
                                        choices =  c("Species", "Gears", "Stocks", "Type"),
-                                       selected = c("Species", "Gears", "Stocks", "Type"),
+                                       selected = c("Species", "Gears", "Stocks"),
                                        status = "primary",
                                        justified = TRUE)
 
