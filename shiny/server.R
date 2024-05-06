@@ -58,7 +58,7 @@ server = function(input, output, session) {
     renderUI({
       return(
         htmltools_value(
-          t1nc.viz.trends(
+          t1nc.viz.trends.table(
             filtered_trend_data(),
             year_min = input$years[1],
             year_max = input$years[2],
