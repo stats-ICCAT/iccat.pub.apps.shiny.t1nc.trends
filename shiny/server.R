@@ -68,8 +68,7 @@ server = function(input, output, session) {
             by_catch_type = "Type"    %in% input$show,
             sensitivity = input$sensitivity,
             colorize_gears = COLORIZE_GEARS
-          ) %>%
-            fontsize(part = "all", size = 8),
+          ) %>% fontsize(part = "all", size = 8),
           ft.align = "left"
         )
       )
