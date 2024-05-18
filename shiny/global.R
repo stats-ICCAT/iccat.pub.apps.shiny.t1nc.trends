@@ -1,4 +1,3 @@
-library(R.utils)
 library(iccat.pub.base)
 library(iccat.pub.viz)
 
