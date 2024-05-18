@@ -68,6 +68,11 @@ RUN adduser shiny sudo
 ENV SHINY_LOG_STDERR=1
 ENV SHINY_LOG_LEVEL=DEBUG
 
+# See: https://github.com/rocker-org/rocker/issues/19
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+   && locale-gen en_US.utf8 \
+   && /usr/sbin/update-locale LANG=en_US.UTF-8
+
 # User running the Shiny server
 USER shiny
 
