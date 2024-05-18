@@ -20,7 +20,7 @@ WORKDIR /
 # Installs all required R packages (and their dependencies) starting from those hat are available on the remote repo
 # and then from the locally available libs (for the time being)
 
-RUN R -e "install.packages(c('bslib', 'cachem', 'colorspace', 'commonmark', 'crayon', 'data.table', 'devtools', 'digest', 'fastmap', 'flextable', 'fontawesome', 'fs', 'glue', 'httpuv', 'jsonlite', 'later', 'magrittr', 'odbc', 'officer', 'openxlsx', 'Rcpp', 'remotes', 'sass', 'shiny', 'shinycssloaders', 'shinyjs', 'shinyWidgets', 'sourcetools', 'stringi', 'stringr', 'colorspace', 'RColorBrewer', 'DT', 'R.utils'), repos = 'http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('bslib', 'cachem', 'colorspace', 'commonmark', 'crayon', 'data.table', 'devtools', 'digest', 'fastmap', 'flextable', 'fontawesome', 'fs', 'glue', 'httpuv', 'jsonlite', 'later', 'magrittr', 'odbc', 'officer', 'openxlsx', 'Rcpp', 'remotes', 'sass', 'shiny', 'shinycssloaders', 'shinyjs', 'shinyWidgets', 'sourcetools', 'stringi', 'stringr', 'colorspace', 'RColorBrewer', 'DT'), repos = 'http://cran.us.r-project.org')"
 
 # Sets the working directory to the shiny-server root folder
 WORKDIR /srv/shiny-server
@@ -53,11 +53,9 @@ RUN Rscript update_libs.R
 COPY *.RData interactive_trend_analysis
 
 # Sets the Shiny log level to 'TRACE', stores the environment variable in .Renviron and copies that file under the 'shiny' user folder
-RUN echo SHINY_LOG_LEVEL = TRACE >> /home/shiny/.Renviron && \
+RUN echo SHINY_LOG_LEVEL=TRACE >> /home/shiny/.Renviron && \
     chown shiny:shiny /home/shiny/.Renviron && \
     chown shiny:shiny /etc/shiny-server
-
-RUN echo LANG=en_US.UTF-8 >> /home/shiny/.Renviron
 
 # Removes an unnecessary directory and files under the Shiny app folder
 RUN rm -rf *.R

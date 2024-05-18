@@ -19,7 +19,7 @@ set_flextable_defaults(font.family = "Arial")
 
 set_log_level(LOG_INFO)
 
-NC_ALL = fread("./NC_all.csv.gz", encoding = "UTF-8") #load("./NC_all.RData")
+load("./NC_all.RData")
 
 MIN_YEAR = min(NC_ALL$YearC)
 MAX_YEAR = max(NC_ALL$YearC)
