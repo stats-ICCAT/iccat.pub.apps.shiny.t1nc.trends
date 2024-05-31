@@ -45,7 +45,8 @@ server = function(input, output, session) {
         by_species    = "Species" %in% input$show,
         by_gear       = "Gears"   %in% input$show,
         by_stock      = "Stocks"  %in% input$show,
-        by_catch_type = "Type"    %in% input$show
+        by_catch_type = "Type"    %in% input$show,
+        rank          = "Rank"    %in% input$show
       )$grouped
 
     if(nrow(summary) > 100 & ( is.null(input$species) | length(input$species) == 0) )
@@ -66,7 +67,9 @@ server = function(input, output, session) {
             by_gear       = "Gears"   %in% input$show,
             by_stock      = "Stocks"  %in% input$show,
             by_catch_type = "Type"    %in% input$show,
+            rank          = "Rank"    %in% input$show,
             sensitivity = input$sensitivity,
+            show_catches_gradient = "Rank" %in% input$show,
             colorize_gears = COLORIZE_GEARS
           ) %>% fontsize(part = "all", size = 8),
           ft.align = "left"
@@ -103,7 +106,8 @@ server = function(input, output, session) {
           by_species    = "Species" %in% input$show,
           by_gear       = "Gears"   %in% input$show,
           by_stock      = "Stocks"  %in% input$show,
-          by_catch_type = "Type"    %in% input$show
+          by_catch_type = "Type"    %in% input$show,
+          rank          = "Rank"    %in% input$show
         )$grouped,
         file = file,
         sep = ",",
@@ -127,6 +131,7 @@ server = function(input, output, session) {
           by_gear       = "Gears"   %in% input$show,
           by_stock      = "Stocks"  %in% input$show,
           by_catch_type = "Type"    %in% input$show,
+          rank          = "Rank"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
@@ -149,6 +154,7 @@ server = function(input, output, session) {
           by_gear       = "Gears"   %in% input$show,
           by_stock      = "Stocks"  %in% input$show,
           by_catch_type = "Type"    %in% input$show,
+          rank          = "Rank"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
@@ -171,6 +177,7 @@ server = function(input, output, session) {
           by_gear       = "Gears"   %in% input$show,
           by_stock      = "Stocks"  %in% input$show,
           by_catch_type = "Type"    %in% input$show,
+          rank          = "Rank"    %in% input$show,
           sensitivity = input$sensitivity,
           colorize_gears = COLORIZE_GEARS
         ),
