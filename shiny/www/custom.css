@@ -1,6 +1,10 @@
 #trends {
-  height: calc(100vh - 150px);
+  height: calc(100vh - 146px);
   overflow-y: auto;
+}
+
+#show button {
+  font-size: x-small
 }
 
 /* To ensure virtual select input dropdown stay in front */
