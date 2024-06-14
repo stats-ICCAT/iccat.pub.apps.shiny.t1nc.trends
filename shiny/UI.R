@@ -46,62 +46,31 @@ ui = function() {
               fluidRow(
                 column(
                   width = 12,
-                  virtualSelectInput("species", "Species",
-                                     width = "100%",
-                                     multiple = TRUE,
-                                     choices = ALL_SPECIES,
-                                     autoSelectFirstOption = TRUE,
-                                     search = TRUE,
-                                     showValueAsTags = TRUE,
-                                     updateOn = "change")
+                  UI_select_input("species", "Species", ALL_SPECIES, auto_select_first = TRUE)
                 )
               ),
               fluidRow(
                 column(
                   width = 12,
-                  virtualSelectInput("flags", "Flag(s)",
-                                     width = "100%",
-                                     choices = ALL_FLAGS,
-                                     search = TRUE,
-                                     showValueAsTags = TRUE,
-                                     multiple = TRUE,
-                                     updateOn = "change")
+                  UI_select_input("flags", "Flag(s)", ALL_FLAGS)
                 )
               ),
               fluidRow(
                 column(
                   width = 12,
-                  virtualSelectInput("gearGroups", "Gear group(s)",
-                                     width = "100%",
-                                     choices = ALL_GEAR_GROUPS,
-                                     search = TRUE,
-                                     showValueAsTags = TRUE,
-                                     multiple = TRUE,
-                                     updateOn = "change")
+                  UI_select_input("gearGroups", "Gear group(s)", ALL_GEAR_GROUPS)
                 )
               ),
               fluidRow(
                 column(
                   width = 12,
-                  virtualSelectInput("stocks", "Stock(s)",
-                                     width = "100%",
-                                     choices = ALL_STOCK_AREAS,
-                                     search = TRUE,
-                                     showValueAsTags = TRUE,
-                                     multiple = TRUE,
-                                     updateOn = "change")
+                  UI_select_input("stocks", "Stock(s)", ALL_STOCK_AREAS)
                 )
               ),
               fluidRow(
                 column(
                   width = 12,
-                  virtualSelectInput("catchTypes", "Catch types",
-                                     width = "100%",
-                                     multiple = TRUE,
-                                     choices = ALL_CATCH_TYPES,
-                                     search = TRUE,
-                                     showValueAsTags = TRUE,
-                                     updateOn = "change")
+                  UI_select_input("catchTypes", "Catch types", ALL_CATCH_TYPES)
                 )
               ),
               fluidRow(
