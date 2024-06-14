@@ -34,8 +34,9 @@ server = function(input, output, session) {
 
     NC = NC[as.integer(as.character(YearC)) %in% input$years[1]:input$years[2]]
 
-    if(nrow(NC) == 0)
-      stop("Unable to identify any catch data with the provided filtering criteria")
+    validate(
+      need(nrow(NC) > 0, "Unable to identify any T1nc data with the provided filtering criteria!")
+    )
 
     summary =
       t1nc.summarise(
@@ -49,33 +50,34 @@ server = function(input, output, session) {
         rank          = "Rank"    %in% input$show
       )$grouped
 
-    if(nrow(summary) > 100 & ( is.null(input$species) | length(input$species) == 0) )
-      stop(paste0("Too many strata (", nrow(summary), "): please narrow down your selection criteria"))
+    validate(
+      need(nrow(summary) < 200 | ( !is.null(input$species) & length(input$species) > 0 ),
+           paste0("Too many strata (", nrow(summary), "): please narrow down your selection criteria!")
+      )
+    )
 
     return(NC)
   })
 
   output$trends =
-    renderUI({
-      return(
-        htmltools_value(
-          t1nc.viz.trends.table(
-            filtered_trend_data(),
-            year_min = input$years[1],
-            year_max = input$years[2],
-            by_species    = "Species" %in% input$show,
-            by_stock      = "Stocks"  %in% input$show,
-            by_gear       = "Gears"   %in% input$show,
-            by_catch_type = "Type"    %in% input$show,
-            rank          = "Rank"    %in% input$show,
-            sensitivity = input$sensitivity,
-            show_catches_gradient = "Rank" %in% input$show,
-            colorize_gears = COLORIZE_GEARS
-          ) %>% fontsize(part = "all", size = 8),
-          ft.align = "left"
-        )
+    renderUI(
+      htmltools_value(
+        t1nc.viz.trends.table(
+          filtered_trend_data(),
+          year_min = input$years[1],
+          year_max = input$years[2],
+          by_species    = "Species" %in% input$show,
+          by_stock      = "Stocks"  %in% input$show,
+          by_gear       = "Gears"   %in% input$show,
+          by_catch_type = "Type"    %in% input$show,
+          rank          = "Rank"    %in% input$show,
+          sensitivity = input$sensitivity,
+          show_catches_gradient = "Rank" %in% input$show,
+          colorize_gears = COLORIZE_GEARS
+        ) %>% fontsize(part = "all", size = 8),
+        ft.align = "left"
       )
-    })
+    )
 
   compute_filename = function(input, suffix) {
     components = c(paste0(input$species,    collapse = "+"),
