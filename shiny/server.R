@@ -1,6 +1,8 @@
 server = function(input, output, session) {
   COLORIZE_GEARS = FALSE
 
+  observeEvent(input$resetFilters, { session$reload() })
+
   filtered_trend_data = reactive({
     NC = NC_ALL
 
