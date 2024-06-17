@@ -81,6 +81,12 @@ server = function(input, output, session) {
       )
     )
 
+  serialize_last_update_date = function() {
+    return(
+      str_replace_all(META$LAST_UPDATE, "\\-", "")
+    )
+  }
+
   compute_filename = function(input, suffix) {
     components = c(paste0(input$species,    collapse = "+"),
                    paste0(input$flags,      collapse = "+"),
@@ -93,7 +99,7 @@ server = function(input, output, session) {
 
 
     return(
-      paste0("ICCAT_T1NC_trends_", paste0(components, collapse = "_"), ".", suffix)
+      paste0("ICCAT_T1NC_", serialize_last_update_date(), "_trends_", paste0(components, collapse = "_"), ".", suffix)
     )
   }
 
