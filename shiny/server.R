@@ -93,7 +93,7 @@ server = function(input, output, session) {
 
 
     return(
-      paste0("trends_", paste0(components, collapse = "_"), ".", suffix)
+      paste0("ICCAT_T1NC_trends_", paste0(components, collapse = "_"), ".", suffix)
     )
   }
 
