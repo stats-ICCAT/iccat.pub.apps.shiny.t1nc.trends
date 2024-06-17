@@ -7,6 +7,8 @@ library(shinyWidgets)
 library(shinycssloaders)
 library(DT)
 
+library(stringr)
+
 # THIS IS ***FUNDAMENTAL*** TO HAVE THE DOCKER CONTAINER CORRECTLY LOAD THE .RData FILE WITH THE ORIGINAL UTF-8 ENCODING
 Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
 
