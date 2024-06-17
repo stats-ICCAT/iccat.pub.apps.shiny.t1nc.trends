@@ -97,7 +97,7 @@ server = function(input, output, session) {
 
   output$downloadCSV = downloadHandler(
     filename = function() {
-      return(compute_filename(input, "csv"))
+      return(compute_filename(input, "csv.gz"))
     },
     content = function(file) {
       write.table(
@@ -111,7 +111,7 @@ server = function(input, output, session) {
           by_catch_type = "Type"    %in% input$show,
           rank          = "Rank"    %in% input$show
         )$grouped,
-        file = file,
+        file = gzfile(file),
         sep = ",",
         na = "",
         row.names = FALSE

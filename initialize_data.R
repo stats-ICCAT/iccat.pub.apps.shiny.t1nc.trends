@@ -1,6 +1,7 @@
 library(iccat.dev.data)
 
-LAST_N_YEARS = 100
+META = list(LAST_UPDATE = as.Date(Sys.Date(), format = "%Y-%M-%d"))
+save(list = "META", file = "./shiny/META.RData")
 
 NC_ALL = t1nc(db_connection = DB_T1(username = Sys.getenv("DB_USERNAME"),
                                     password = Sys.getenv("DB_PASSWORD")))

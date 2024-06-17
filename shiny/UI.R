@@ -1,5 +1,5 @@
 ui = function() {
-  TITLE = "ICCAT interactive trend analysis v1.0"
+  TITLE = paste0("ICCAT data trends / T1NC / ", META$LAST_UPDATE)
   return(
     fluidPage(
       title = TITLE,
@@ -19,13 +19,8 @@ ui = function() {
             column(
               width = 8,
               h2(
-                img(src = "iccat-logo.jpg", height = "96px"),
-                span(TITLE),
-                #downloadButton("downloadCSV",  "CSV"),
-                #downloadButton("downloadXLSX", "XLSX"), # Does not seem to work consistently
-                #downloadButton("downloadHTML", "HTML"), # Does not seem to work consistently
-                #downloadButton("downloadPNG",  "PNG")   # Does not seem to work consistently
-                downloadButton("downloadCSV",  "Download")
+                img(src = "iccat-logo.jpg", height = "48px"),
+                span(TITLE)
               )
             )
           ),
@@ -92,6 +87,32 @@ ui = function() {
                               width = "100%",
                               min = 0, max = 1, value = 0,
                               step = .1)
+                )
+              ),
+              fluidRow(
+                column(
+                  width = 12,
+                  h5(strong("Download current dataset:"))
+                )
+              ),
+              fluidRow(
+                column(
+                  width = 4,
+                  downloadButton("downloadCSV", "Filtered", style = "width: 100px")
+                ),
+                column(
+                  width = 4,
+                  span("as ", style = "vertical-align: -5px",
+                       code(".csv.gz")
+                  )
+                )
+              ),
+              fluidRow(
+                column(
+                  width = 12,
+                  hr(),
+                  span("Data last updated on:"),
+                  strong(META$LAST_UPDATE)
                 )
               )
             ),
