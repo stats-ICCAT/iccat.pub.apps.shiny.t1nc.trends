@@ -62,24 +62,33 @@ server = function(input, output, session) {
   })
 
   output$trends =
-    renderUI(
-      htmltools_value(
-        t1nc.viz.trends.table(
-          filtered_trend_data(),
-          year_min = input$years[1],
-          year_max = input$years[2],
-          by_species    = "Species" %in% input$show,
-          by_stock      = "Stocks"  %in% input$show,
-          by_gear       = "Gears"   %in% input$show,
-          by_catch_type = "Type"    %in% input$show,
-          rank          = "Rank"    %in% input$show,
-          sensitivity = input$sensitivity,
-          show_catches_gradient = "Rank" %in% input$show,
-          colorize_gears = COLORIZE_GEARS
-        ) %>% fontsize(part = "all", size = 8),
-        ft.align = "left"
-      )
-    )
+    renderUI({
+      show = input$show
+      year_min = input$years[1]
+      year_max = input$years[2]
+      sensitivity = input$sensitivity
+
+      filtered_data = filtered_trend_data()
+
+      future_promise({
+        htmltools_value(
+          t1nc.viz.trends.table(
+            filtered_data,
+            year_min = year_min,
+            year_max = year_max,
+            by_species    = "Species" %in% show,
+            by_stock      = "Stocks"  %in% show,
+            by_gear       = "Gears"   %in% show,
+            by_catch_type = "Type"    %in% show,
+            rank          = "Rank"    %in% show,
+            sensitivity = sensitivity,
+            show_catches_gradient = "Rank" %in% show,
+            colorize_gears = COLORIZE_GEARS
+          ) %>% fontsize(part = "all", size = 8),
+          ft.align = "left"
+        )
+      })
+    })
 
   serialize_last_update_date = function() {
     return(
