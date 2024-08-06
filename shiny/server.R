@@ -70,7 +70,7 @@ server = function(input, output, session) {
 
       filtered_data = filtered_trend_data()
 
-      future_promise({
+      future_promise(packages = "flextable", {
         htmltools_value(
           t1nc.viz.trends.table(
             filtered_data,
@@ -84,7 +84,7 @@ server = function(input, output, session) {
             sensitivity = sensitivity,
             show_catches_gradient = "Rank" %in% show,
             colorize_gears = COLORIZE_GEARS
-          ) %>% fontsize(part = "all", size = 8),
+          ) %>% fontsize(part = "all", size = 8) %>% font(fontname = "Courier new"),
           ft.align = "left"
         )
       })
