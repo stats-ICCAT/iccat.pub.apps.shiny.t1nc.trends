@@ -84,7 +84,7 @@ server = function(input, output, session) {
             sensitivity = sensitivity,
             show_catches_gradient = "Rank" %in% show,
             colorize_gears = COLORIZE_GEARS
-          ) %>% fontsize(part = "all", size = 8) %>% font(fontname = "Arial"),
+          ) %>% fontsize(part = "all", size = 8) %>% font(part = "all", fontname = "Arial"),
           ft.align = "left"
         )
       })
