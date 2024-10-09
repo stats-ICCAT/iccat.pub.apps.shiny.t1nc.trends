@@ -70,7 +70,7 @@ server = function(input, output, session) {
 
       filtered_data = filtered_trend_data()
 
-      future_promise(packages = "flextable", {
+      future_promise(packages = "flextable", seed = NULL, {
         htmltools_value(
           t1nc.viz.trends.table(
             filtered_data,
