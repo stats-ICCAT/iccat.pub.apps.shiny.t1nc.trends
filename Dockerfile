@@ -39,11 +39,11 @@ COPY ./build/shiny/shiny-server.conf /etc/shiny-server
 COPY ./update_libs.R .
 
 # External argument(s)
-ARG GITLAB_AUTH_TOKEN
+ARG GITHUB_AUTH_TOKEN
 
 # Environment variables
 
-ENV GITLAB_AUTH_TOKEN=$GITLAB_AUTH_TOKEN
+ENV GITHUB_AUTH_TOKEN=$GITHUB_AUTH_TOKEN
 
 # Copies the entire structure of the Shiny app under a dedicated folder
 COPY ./shiny interactive_trend_analysis
