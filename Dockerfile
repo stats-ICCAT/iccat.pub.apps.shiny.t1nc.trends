@@ -5,26 +5,24 @@ WORKDIR /
 # Installs all required R packages (and their dependencies) starting from those hat are available on the remote repo
 # and then from the locally available libs (for the time being)
 RUN install2.r --error --skipinstalled \
-    stringr \
-    openxlsx \
+    colorspace \
     data.table \
+    devtools \
+    dplyr \
+    DT \
     flextable \
-    officer \
+    future \
     odbc \
+    officer \
+    openxlsx \
+    promises \
+    R.utils \
+    RColorBrewer \
     shiny \
+    shinycssloaders \
     shinyjs \
     shinyWidgets \
-    shinycssloaders \
-    DT \
-    colorspace \
-    RColorBrewer \
-    devtools \
-    R.utils
-
-RUN install2.r --error --skipinstalled \
-    dplyr \
-    promises \
-    future
+    stringr
 
 # Sets the working directory to the shiny-server root folder
 WORKDIR /srv/shiny-server
